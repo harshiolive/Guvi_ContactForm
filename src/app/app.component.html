@@ -1,0 +1,30 @@
+<div class="form">
+  <h1 id="registration">Say <span style="color:green">Hello !</span></h1>
+  <p style="font-size:15px">Feel free  to stop by and say Hi</p><br>
+  <p *ngIf="successMessage" style="font-weight:bold; font-size:20px">{{ successMessage }}</p>
+  <h4 *ngIf="successMessage && !reactiveform.get('name').value || !reactiveform.get('email').value || !reactiveform.get('message').value" style="color:red;font-size:10px">{{ errorMessage }}</h4>
+  <form [formGroup]="reactiveform" #reactive="ngForm" (ngSubmit)="onSubmit(reactive.value)">
+    <div>
+    <label for="name">Name <span style="color:red">*</span></label>
+    <input type="text" id="name"  formControlName="name" name="name" ngModel required>
+
+    <label for="email">E-mail id <span style="color:red">*</span></label>
+    <input type="email" id="email"  formControlName="email" name="email" ngModel required>
+    <div>
+      <span style="color: red"
+      *ngIf="!reactiveform.get('email').valid && reactiveform.get('email').touched">The email you entered is not valid.</span>
+    </div>
+    <br>
+
+    <label for="mobileno">Contact Number</label>
+    <input type="text" id="mobileno"  formControlName="mobileno" name="mobileno" ngModel>
+
+    <label for="subject">Subject </label>
+    <input type="text" id="subject"  formControlName="subject" name="subject" ngModel>
+    
+    <label for="message">Message <span style="color:red">*</span></label>
+    <input type="text" style="height:60px" id="message"  formControlName="message" name="message" ngModel required>
+    </div>
+    <input type="submit" value="Send" id="btn">
+  </form>
+</div>
